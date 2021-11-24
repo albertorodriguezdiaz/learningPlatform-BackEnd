@@ -3,6 +3,8 @@ const bcryptjs = require('bcryptjs');
 const { validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
 
+
+
 exports.crearUsuario = async (req, res) => {
 
     // revisar si hay errores
@@ -60,5 +62,22 @@ exports.crearUsuario = async (req, res) => {
     } catch (error) {
         console.log(error);
         res.status(400).send('Hubo un error');
+    }
+}
+
+
+
+
+exports.obtenerAlumnos = async (req, res) => {
+
+    try {
+        // Buscamos los alumnos
+        const alumnos = await Usuario.find({tipo: 'user'});
+        res.json({alumnos});            
+
+    } catch (error) {
+
+        console.log(error);
+        res.status(500).send('Hubo un error al mostrar alumnos');
     }
 }

@@ -17,6 +17,11 @@ const UsuarioSchema = mongoose.Schema({
         required: true,
         trim:  true
     },
+    tipo: {
+        type: String,
+        trim:  true,
+        default: 'user'
+    },
     registro: {
         type: Date,
         default: Date.now()
