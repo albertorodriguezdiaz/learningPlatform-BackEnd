@@ -17,6 +17,11 @@ const UsuarioSchema = mongoose.Schema({
         required: true,
         trim:  true
     },
+    colegio: {
+        type: String,
+        trim:  true,
+        default: 'soyvida'
+    },
     tipo: {
         type: String,
         trim:  true,

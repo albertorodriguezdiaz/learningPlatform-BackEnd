@@ -1,14 +1,10 @@
 const mongoose = require('mongoose');
 
-const BookSchema = mongoose.Schema({
+const SchoolSchema = mongoose.Schema({
     nombre: {
         type: String,
         required: true,
         trim:  true
-    },
-    propietario: {
-        type: mongoose.Schema.Types.ObjectId, //Tipo Join
-        ref: 'User'
     },
     registro: {
         type: Date,
@@ -16,4 +12,4 @@ const BookSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Usuario', BookSchema);
+module.exports = mongoose.model('Usuario', SchoolSchema);

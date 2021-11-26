@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const BookSchema = mongoose.Schema({
+const ActivitiesSchema = mongoose.Schema({
     nombre: {
         type: String,
         required: true,
@@ -10,10 +10,14 @@ const BookSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId, //Tipo Join
         ref: 'User'
     },
+    libro: {
+        type: mongoose.Schema.Types.ObjectId, //Tipo Join
+        ref: 'Book'
+    },
     registro: {
         type: Date,
         default: Date.now()
     }
 });
 
-module.exports = mongoose.model('Usuario', BookSchema);
+module.exports = mongoose.model('Usuario', ActivitiesSchema);
