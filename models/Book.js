@@ -16,4 +16,4 @@ const BookSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Usuario', BookSchema);
+module.exports = mongoose.model('Book', BookSchema);

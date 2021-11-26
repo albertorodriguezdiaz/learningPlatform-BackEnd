@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const ActivitiesSchema = mongoose.Schema({
+const ActivitieSchema = mongoose.Schema({
     nombre: {
         type: String,
         required: true,
@@ -20,4 +20,4 @@ const ActivitiesSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Usuario', ActivitiesSchema);
+module.exports = mongoose.model('Activitie', ActivitieSchema);
