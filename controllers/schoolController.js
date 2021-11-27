@@ -27,7 +27,7 @@ exports.crearSchool = async (req, res) => {
 }
 
 
-exports.obtenerColegios = async (req, res) => {
+exports.obtenerSchool = async (req, res) => {
 
     try {
         // Buscamos los alumnos
@@ -42,94 +42,70 @@ exports.obtenerColegios = async (req, res) => {
 }
 
 
-// exports.obtenerProyectos = async (req, res) => {
 
-//     try {
-//         const proyectos = await Proyecto.find({creador: req.usuario.id});
-//         res.json({proyectos});
-//     } catch (error) {
 
-//         console.log(error);
-//         res.status(500).send('Hubo un error');
-//     }
+exports.actualizarSchool = async (req, res) => {
 
-// }
+    // revisar si hay errores
+    const errores = validationResult(req);
+    if (!errores.isEmpty()) {
+        return res.status(400).json({errores: errores.array()});
+    }
 
-// exports.actualizarProyecto = async (req, res) => {
+    const {nombre} = req.body;
+    const nuevoSchool = {};
 
-//     // revisar si hay errores
-//     const errores = validationResult(req);
-//     if (!errores.isEmpty()) {
-//         return res.status(400).json({errores: errores.array()});
-//     }
+    if (nombre) {
+        nuevoSchool.nombre = nombre;
+    }
 
-//     const {nombre} = req.body;
-//     const nuevoProyecto = {};
+    try {
 
-//     if (nombre) {
-//         nuevoProyecto.nombre = nombre;
-//     }
+        // revisar el id
+        let colegio = await School.findById(req.params.id);
 
-//     try {
+        // Si el school existe o no
+        if (!colegio) {
+            return res.status(404).json({msg: 'Colegio no encontrado'});
+        }
 
-//         // revisar el id
-//         let proyecto = await Proyecto.findById(req.params.id);
+        // actualizar
+        colegio = await School.findByIdAndUpdate({_id: req.params.id}, {$set:nuevoSchool}, {new: true});
 
-//         // Si el proyecto existe o no
-//         if (!proyecto) {
-//             return res.status(404).json({msg: 'Proyecto no encontrado'});
-//         }
+        res.json({colegio});
 
-//         // Verificar el creador del proyecto
-//         if (proyecto.creador.toString() !== req.usuario.id) {
-//             return res.status(401).json({msg: 'No Autorizado'});
-//         }
+    } catch (error) {
 
-//         // actualizar
-//         proyecto = await Proyecto.findByIdAndUpdate({_id: req.params.id}, {$set:nuevoProyecto}, {new: true});
+        console.log(error);
+        res.status(500).send('Hubo un error al actualizar');
+    }
 
-//         res.json({proyecto});
-
-//     } catch (error) {
-
-//         console.log(error);
-//         res.status(500).send('Hubo un error al actualizar');
-//     }
-
-// }
+}
 
 
 
 
-// exports.eliminarProyecto = async (req, res) => {
+exports.eliminarSchool = async (req, res) => {
 
-//     try {
-//           // revisar el id
-//           let proyecto = await Proyecto.findById(req.params.id);
+    try {
+          // revisar el id
+          let colegio = await School.findById(req.params.id);
 
-//           // Si el proyecto existe o no
-//           if (!proyecto) {
-//               return res.status(404).json({msg: 'Proyecto no encontrado'});
-//           }
+          // Si el colegio existe o no
+          if (!colegio) {
+              return res.status(404).json({msg: 'Proyecto no encontrado'});
+          }
   
-//           // Verificar el creador del proyecto
-//           if (proyecto.creador.toString() !== req.usuario.id) {
-//               return res.status(401).json({msg: 'No Autorizado'});
-//           }
-  
-//           // Eliminar
-//           // Eliminar el Proyecto
-//             await Proyecto.findOneAndRemove({ _id : req.params.id });
-//             res.json({ msg: 'Proyecto eliminado '})
+          // Eliminar el Colegio
+            await School.findOneAndRemove({ _id : req.params.id });
+            res.json({ msg: 'Colegio eliminado '})
 
-//     } catch (error) {
+    } catch (error) {
 
-//         console.log(error);
-//         res.status(500).send('Hubo un error al eliminar');
-//     }
+        console.log(error);
+        res.status(500).send('Hubo un error al eliminar');
+    }
 
-// }
-
-
+}
 
 

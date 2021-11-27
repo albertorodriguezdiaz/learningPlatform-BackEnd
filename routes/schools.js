@@ -16,7 +16,20 @@ router.post('/',
 );
 
 router.get('/',
-    schoolController.obtenerColegios
+    schoolController.obtenerSchool
+);
+
+// actualizar school via ID
+router.put('/:id',
+    [
+        check('nombre', 'El Nombre del colegio es obligatorio').not().isEmpty()
+    ],
+    schoolController.actualizarSchool
+);
+
+// Eliminar proyecto via ID
+router.delete('/:id',
+    schoolController.eliminarSchool
 );
 
 
