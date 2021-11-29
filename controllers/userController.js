@@ -136,11 +136,14 @@ exports.actualizarUsuario = async (req, res) => {
         return res.status(400).json({errores: errores.array()});
     }
 
-    const {nombre} = req.body;
+    const {nombre, email, colegio, tipo} = req.body;
     const nuevoUsuario = {};
 
     if (nombre) {
         nuevoUsuario.nombre = nombre;
+        nuevoUsuario.email = email;
+        nuevoUsuario.colegio = colegio;
+        nuevoUsuario.tipo = tipo;
     }
 
     try {
