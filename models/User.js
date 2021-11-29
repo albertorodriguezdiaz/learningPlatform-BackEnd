@@ -18,9 +18,8 @@ const UsuarioSchema = mongoose.Schema({
         trim:  true
     },
     colegio: {
-        type: String,
-        trim:  true,
-        default: 'soyvida'
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'School'
     },
     tipo: {
         type: String,

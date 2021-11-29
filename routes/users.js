@@ -18,8 +18,24 @@ router.post('/',
 
 router.get('/',
     // auth,
-    usuarioController.obtenerAlumnos
+    // usuarioController.obtenerAlumnos
+    usuarioController.obtenerAlumnosByColegio
 );
+
+
+// actualizar Usuario via ID
+router.put('/:id',
+    [
+        check('nombre', 'El Nombre del usuario es obligatorio').not().isEmpty()
+    ],
+    usuarioController.actualizarUsuario
+);
+
+// Eliminar Usuario via ID
+router.delete('/:id',
+    usuarioController.eliminarUsuario
+);
+
 
 
 module.exports = router;
