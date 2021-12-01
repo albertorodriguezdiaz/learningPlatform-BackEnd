@@ -27,7 +27,7 @@ router.put('/:id',
     schoolController.actualizarSchool
 );
 
-// Eliminar proyecto via ID
+// Eliminar school via ID
 router.delete('/:id',
     schoolController.eliminarSchool
 );

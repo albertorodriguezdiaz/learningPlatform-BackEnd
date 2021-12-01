@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const ActivitieSchema = mongoose.Schema({
+const ActivitySchema = mongoose.Schema({
     propietario: {
         type: mongoose.Schema.Types.ObjectId, //Tipo Join
         ref: 'User'
@@ -207,4 +207,4 @@ const ActivitieSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Activitie', ActivitieSchema);
+module.exports = mongoose.model('Activity', ActivitySchema);
