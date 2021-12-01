@@ -1,10 +1,17 @@
 const mongoose = require('mongoose');
 
 const ActivitieSchema = mongoose.Schema({
-    nombre: {
-        type: String,
-        required: true,
-        trim:  true
+    propietario: {
+        type: mongoose.Schema.Types.ObjectId, //Tipo Join
+        ref: 'User'
+    },
+    libro: {
+        type: mongoose.Schema.Types.ObjectId, //Tipo Join
+        ref: 'Book'
+    },
+    registro: {
+        type: Date,
+        default: Date.now()
     },
     actividad1: {
         type: Boolean,
@@ -197,18 +204,6 @@ const ActivitieSchema = mongoose.Schema({
     actividad48: {
         type: Boolean,
         default: false
-    },
-    propietario: {
-        type: mongoose.Schema.Types.ObjectId, //Tipo Join
-        ref: 'User'
-    },
-    libro: {
-        type: mongoose.Schema.Types.ObjectId, //Tipo Join
-        ref: 'Book'
-    },
-    registro: {
-        type: Date,
-        default: Date.now()
     }
 });
 
