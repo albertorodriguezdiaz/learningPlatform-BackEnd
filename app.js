@@ -21,7 +21,7 @@ const PORT = process.env.PORT || 4000;
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/users', require('./routes/users'));
 app.use('/api/schools', require('./routes/schools'));
-// app.use('/api/activity', require('./routes/activity'));
+app.use('/api/activity', require('./routes/activity'));
 app.use('/api/books', require('./routes/books'));
 app.use('/api/booksoyvida', require('./routes/booksoyvida'));
 

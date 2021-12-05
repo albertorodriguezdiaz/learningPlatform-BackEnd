@@ -1,6 +1,5 @@
 const Books = require('../models/Book')
 const {validationResult} = require('express-validator');
-const Book = require('../models/Book');
 
 exports.crearBooks = async (req, res) => {
 
@@ -12,11 +11,11 @@ exports.crearBooks = async (req, res) => {
 
     try {
         // Crear un nuevo books Soy Vida
-        const booksoyvida = new Books(req.body);
+        const bookuser = new Books(req.body);
 
         // Guardamos el proyecto
-        await booksoyvida.save();
-        res.json({booksoyvida});
+        await bookuser.save();
+        res.json({bookuser});
 
     } catch (error) {
 
@@ -31,8 +30,8 @@ exports.obtenerBooks = async (req, res) => {
 
     try {
         // Buscamos los books de soy Vida
-        const booksoyvida = await Books.find();
-        res.json({booksoyvida});            
+        const bookuser = await Books.find();
+        res.json({bookuser});            
 
     } catch (error) {
 
@@ -90,7 +89,7 @@ exports.eliminarBooks = async (req, res) => {
 
     try {
           // revisar el id
-          let booksoyvida = await Book.findById(req.params.id);
+          let booksoyvida = await Books.findById(req.params.id);
 
           // Si el colegio existe o no
           if (!booksoyvida) {
@@ -98,7 +97,7 @@ exports.eliminarBooks = async (req, res) => {
           }
   
           // Eliminar el Colegio
-            await Book.findOneAndRemove({ _id : req.params.id });
+            await Books.findOneAndRemove({ _id : req.params.id });
             res.json({ msg: 'Book eliminado '})
 
     } catch (error) {

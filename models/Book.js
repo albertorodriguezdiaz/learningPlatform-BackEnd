@@ -1,13 +1,17 @@
 const mongoose = require('mongoose');
 
 const BookSchema = mongoose.Schema({
-    nombre: {
+    libro: {
         type: mongoose.Schema.Types.ObjectId, //Tipo Join
         ref: 'BookSoyVida'
     },
-    propietario: {
+    usuario: {
         type: mongoose.Schema.Types.ObjectId, //Tipo Join
         ref: 'User'
+    },
+    colegio: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'School'
     },
     registro: {
         type: Date,

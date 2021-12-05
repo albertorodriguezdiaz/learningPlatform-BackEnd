@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const ActivitySchema = mongoose.Schema({
-    propietario: {
+    usuario: {
         type: mongoose.Schema.Types.ObjectId, //Tipo Join
         ref: 'User'
     },
@@ -57,7 +57,7 @@ const ActivitySchema = mongoose.Schema({
         type: Boolean,
         default: false
     },
-    actividad13: {
+    actividad12: {
         type: Boolean,
         default: false
     },
@@ -202,6 +202,10 @@ const ActivitySchema = mongoose.Schema({
         default: false
     },
     actividad48: {
+        type: Boolean,
+        default: false
+    },
+    finalizo: {
         type: Boolean,
         default: false
     }

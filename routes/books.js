@@ -8,9 +8,6 @@ const { check } = require('express-validator');
 // api/booksoyvida
 
 router.post('/',
-    [
-        check('nombre','El nombre es obligatorio').not().isEmpty(),
-    ],
     booksController.crearBooks
 );
 
