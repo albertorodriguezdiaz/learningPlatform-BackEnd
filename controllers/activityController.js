@@ -148,7 +148,7 @@ exports.actualizarActivity = async (req, res) => {
         }
 
         // actualizar
-        activity = await Activity.findByIdAndUpdate({_id: req.params.id}, {$set:nuevaActivity}, {new: true});
+        const activity = await Activity.findByIdAndUpdate({_id: req.params.id}, {$set:nuevaActivity}, {new: true});
         res.json({activity});
 
     } catch (error) {
