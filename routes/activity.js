@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const activityController = require('../controllers/activityController')
 const { check } = require('express-validator');
-// const auth = require('../middleware/auth');
+const auth = require('../middleware/auth');
 
 // api/activity
 
@@ -12,11 +12,18 @@ router.post('/',
 );
 
 router.get('/',
+    // auth,
     activityController.obtenerActivity
 );
 
+// router.get('/:usuario',
+//     // auth,
+//     activityController.obtenerActivity
+// );
+
 
 router.put('/:id',
+    // auth,
     activityController.actualizarActivity
 );
 

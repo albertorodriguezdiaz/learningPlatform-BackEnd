@@ -26,12 +26,37 @@ exports.crearActivity = async (req, res) => {
 }
 
 
+// exports.obtenerActivityAll = async (req, res) => {
+
+//     try {
+//         // Buscamos los Activity de soy Vida
+//         const activity = await Activity.find();
+//         res.json({activity});            
+
+//     } catch (error) {
+
+//         console.log(error);
+//         res.status(500).send('Hubo un error al mostrar Activitys de soy vida');
+//     }
+// }
+
+
 exports.obtenerActivity = async (req, res) => {
+    // revisar si hay errores
+    const errores = validationResult(req);
+    if (!errores.isEmpty()) {
+        return res.status(400).json({errores: errores.array()});
+    }
 
     try {
-        // Buscamos los Activity de soy Vida
-        const activity = await Activity.find();
-        res.json({activity});            
+
+        // Extraer la actividad
+        // const {usuario} = req.body;
+        const {usuario} = req.query;
+
+         const actividad = await Activity.find({usuario});
+        res.json({actividad});
+              
 
     } catch (error) {
 
