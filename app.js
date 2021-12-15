@@ -24,6 +24,10 @@ app.use('/api/schools', require('./routes/schools'));
 app.use('/api/activity', require('./routes/activity'));
 app.use('/api/books', require('./routes/books'));
 app.use('/api/booksoyvida', require('./routes/booksoyvida'));
+app.use('/api/uploadimage', require('./routes/uploadimage'));
+app.use('/api/uploadimageinfo', require('./routes/uploadimageinfo'));
+
+app.use('/uploads',express.static('uploads'))
 
 
 // Arrancar la app
