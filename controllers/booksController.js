@@ -26,11 +26,14 @@ exports.crearBooks = async (req, res) => {
 }
 
 
+
 exports.obtenerBooks = async (req, res) => {
 
     try {
+        const {usuario} = req.query;
+        
         // Buscamos los books de soy Vida
-        const bookuser = await Books.find();
+        const bookuser = await Books.find({usuario: usuario});
         res.json({bookuser});            
 
     } catch (error) {

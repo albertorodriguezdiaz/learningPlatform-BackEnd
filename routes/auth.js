@@ -11,7 +11,8 @@ const auth = require('../middleware/auth');
 // Obteniendo el usuario autenticado
 router.get('/',
     auth,
-    [
+    [   check('email','El correo es obligatorio').not().isEmpty(),
+        check('password','Debe ingresar una contraseña válida').not().isEmpty(),
         check('email','Agrega un email valido').isEmail(),
         check('password', 'El password debe ser minimo de 6 caracteres').isLength({min:6})
     ],

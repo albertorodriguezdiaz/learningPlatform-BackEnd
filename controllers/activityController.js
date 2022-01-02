@@ -52,9 +52,9 @@ exports.obtenerActivity = async (req, res) => {
 
         // Extraer la actividad
         // const {usuario} = req.body;
-        const {usuario} = req.query;
+        const {usuario, libro} = req.query;
 
-         const actividad = await Activity.find({usuario});
+         const actividad = await Activity.find({usuario, libro});
         res.json({actividad});
               
 

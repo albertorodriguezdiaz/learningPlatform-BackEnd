@@ -29,8 +29,8 @@ exports.obtenerImageActivityInfo = async (req, res) => {
 
     try {
 
-        const {usuario} = req.query;
-        const imageActivity = await ImageActivity.find({usuario});
+        const {usuario, actividad} = req.query;
+        const imageActivity = await ImageActivity.find({usuario, actividad});
         res.json({imageActivity});            
 
     } catch (error) {
