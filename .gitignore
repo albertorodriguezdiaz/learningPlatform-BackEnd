@@ -19,6 +19,10 @@ variables.env
 .env.test.local
 .env.production.local
 
+# Files
+uploads/img/
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
