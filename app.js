@@ -29,7 +29,6 @@ app.use('/api/uploadimageinfo', require('./routes/uploadimageinfo'));
 
 app.use('/uploads',express.static('uploads'))
 
-
 // Arrancar la app
 app.listen(port, '0.0.0.0', () => console.log(`Server runs in: ${port}`));
 // app.listen(port, () => {
