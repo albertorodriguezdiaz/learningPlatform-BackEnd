@@ -1,6 +1,7 @@
 const Activity = require('../models/Activity')
 const {validationResult} = require('express-validator');
 
+
 exports.crearActivity = async (req, res) => {
 
     // revisar si hay errores
@@ -9,8 +10,17 @@ exports.crearActivity = async (req, res) => {
         return res.status(400).json({errores: errores.array()});
     }
 
+    const {usuario, libro} = req.body;
+
+    // Revisar que el usuario registrado sea unico
+    let libroExiste = await Activity.findOne({usuario, libro});
+
+    if (libroExiste) {
+        return res.status(400).json({ msg: 'El usuario ya tiene este libro registrado'});
+    }
+
     try {
-        // Crear un nuevo Activitys Soy Vida
+        // Crear un nuevo Activity Soy Vida
         const activity = new Activity(req.body);
 
         // Guardamos el proyecto

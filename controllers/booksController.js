@@ -9,6 +9,15 @@ exports.crearBooks = async (req, res) => {
         return res.status(400).json({errores: errores.array()});
     }
 
+    const {usuario, libro} = req.body;
+
+    // Revisar que el usuario registrado sea unico
+    let libroExiste = await Books.findOne({usuario, libro});
+
+    if (libroExiste) {
+        return res.status(400).json({ msg: 'El usuario ya tiene este libro registrado'});
+    }
+
     try {
         // Crear un nuevo books Soy Vida
         const bookuser = new Books(req.body);
@@ -30,11 +39,21 @@ exports.crearBooks = async (req, res) => {
 exports.obtenerBooks = async (req, res) => {
 
     try {
-        const {usuario} = req.query;
-        
-        // Buscamos los books de soy Vida
-        const bookuser = await Books.find({usuario: usuario});
-        res.json({bookuser});            
+        const {usuario, libro, colegio} = req.query;
+
+         if(libro && colegio){
+            const bookuser = await Books.find({libro, colegio});
+            res.json({bookuser}); 
+         }else if (usuario) {
+            // Buscamos los books de soy Vida por usuario
+            const bookuser = await Books.find({usuario});
+            res.json({bookuser}); 
+        }else {
+            // Buscamos todos los books para mostrar al admin
+            const bookuser = await Books.find();
+            res.json({bookuser}); 
+        }
+         
 
     } catch (error) {
 
