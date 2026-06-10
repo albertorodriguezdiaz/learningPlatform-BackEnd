@@ -30,7 +30,7 @@ exports.crearSchool = async (req, res) => {
 exports.obtenerSchool = async (req, res) => {
 
     try {
-        // Buscamos los alumnos
+        // Buscamos los colegios
         const colegios = await School.find();
         res.json({colegios});            
 
